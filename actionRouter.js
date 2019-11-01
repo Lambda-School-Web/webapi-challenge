@@ -2,8 +2,16 @@ const router = require("express").Router();
 const db = require("./data/helpers/actionModel");
 
 router.get("/", validateActionID, async (req, res) => {
-  const actions = await db.get();
-  res.status(200).json(actions);
+  try {
+    const actions = await db.get();
+    actions.length > 0
+      ? res.status(200).json(actions)
+      : res.status(200).json({ message: "There no actions" });
+  } catch {
+    res.status(500).json({
+      error: "There was an error while attempting to fetch the actions"
+    });
+  }
 });
 
 router.get("/:id", validateActionID, async (req, res) => {
