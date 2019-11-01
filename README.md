@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Learned about routers, and custom middleware
+
 - [ ] Describe Middleware?
+
+Middleware is a function or code we want to be executed depending on how we insert the middleware into server. It can be globally executed through server.use, or it can be applied to a certain router, or a specific route.
 
 - [ ] Describe a Resource?
 
+Anything you send to the client is a resource. Data, status code, error message, etc.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+Besides the data, It can return status codes
+
 - [ ] How can we partition our application into sub-applications?
+
+By using express routers.
 
 ## Project Setup
 
