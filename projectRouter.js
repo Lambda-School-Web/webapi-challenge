@@ -2,6 +2,20 @@ const router = require("express").Router();
 const db = require("./data/helpers/projectModel");
 const dbAction = require("./data/helpers/actionModel");
 
+router.get("/", async (req, res) => {
+  try {
+    const projects = await db.get();
+
+    projects
+      ? res.status(200).json(projects)
+      : res.status(200).json({ message: "There are no projects" });
+  } catch {
+    es.status(500).json({
+      error: "There was an error while attempting to fetch the projects"
+    });
+  }
+});
+
 router.get("/:id", validateProjectId, async (req, res) => {
   res.status(200).json(req.project);
 });
