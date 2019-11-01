@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const Projects = props => {
+const Project = props => {
   const [data, setData] = useState(null);
   useEffect(() => {
     axios
@@ -17,15 +17,23 @@ const Projects = props => {
   const renderProject = () => {
     return (
       <>
-        <h2>Project</h2>
+        <h1>Project</h1>
         <p>Name: {data.name}</p>
         <p>Description: {data.description}</p>
-        {data.actions.map(action => {})}
+        {data.actions.length > 0 ? <h2>Actions</h2> : null}
+        {data.actions.map(action => {
+          return (
+            <>
+              <p>Description: {action.description}</p>
+              <p>Notes: {action.notes}</p>
+            </>
+          );
+        })}
       </>
     );
   };
 
-  return <div></div>;
+  return <div>{data ? renderProject() : <p>Nothing to display</p>}</div>;
 };
 
-export default Projects;
+export default Project;
