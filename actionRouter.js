@@ -1,6 +1,11 @@
 const router = require("express").Router();
 const db = require("./data/helpers/actionModel");
 
+router.get("/", validateActionID, async (req, res) => {
+  const actions = await db.get();
+  res.status(200).json(actions);
+});
+
 router.get("/:id", validateActionID, async (req, res) => {
   res.status(200).json(req.action);
 });
