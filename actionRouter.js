@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const db = require("./data/helpers/actionModel");
 
-router.get("/", validateActionID, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const actions = await db.get();
     actions.length > 0
       ? res.status(200).json(actions)
-      : res.status(200).json({ message: "There no actions" });
+      : res.status(200).json({ message: "There are no actions" });
   } catch {
     res.status(500).json({
       error: "There was an error while attempting to fetch the actions"
